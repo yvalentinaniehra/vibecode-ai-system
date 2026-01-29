@@ -23,8 +23,7 @@
     "onStartupFinished"
   ],
   "main": "./out/extension.js",
-  "icon": "media/icon.png",
-  "contributes": {
+    "contributes": {
     "commands": [
       {
         "command": "vibecode.executeTask",

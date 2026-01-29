@@ -249,6 +249,80 @@ export class VibecodePanel {
             font-size: 12px;
         }
 
+        .result-content {
+            line-height: 1.6;
+        }
+
+        .result-header {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 12px 0 8px 0;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 4px;
+        }
+
+        .result-content ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        .result-content li {
+            margin: 4px 0;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 8px;
+            margin: 4px 0;
+            padding: 4px 8px;
+            background: var(--bg-primary);
+            border-radius: 4px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            min-width: 100px;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+        }
+
+        .status-success {
+            color: #4caf50;
+            font-weight: 600;
+        }
+
+        .status-error {
+            color: #f44336;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            margin: 8px 0;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: var(--vscode-editor-font-family);
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+
+        .inline-code {
+            background: var(--bg-primary);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: var(--vscode-editor-font-family);
+            font-size: 12px;
+        }
+
         .input-area {
             padding: 16px;
             border-top: 1px solid var(--border);
@@ -506,15 +580,51 @@ export class VibecodePanel {
             const messageEl = document.createElement('div');
             messageEl.className = 'message ' + type;
 
-            // Simple markdown-like formatting
-            let formattedText = text
-                .replace(/\`\`\`([\\s\\S]*?)\`\`\`/g, '<pre><code>$1</code></pre>')
-                .replace(/\`([^\`]+)\`/g, '<code>$1</code>')
-                .replace(/\\n/g, '<br>');
+            // Clean and format the text
+            let formattedText = cleanOutput(text);
 
             messageEl.innerHTML = formattedText;
             messagesEl.appendChild(messageEl);
             messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        function cleanOutput(text) {
+            // Remove ANSI escape codes
+            let cleaned = text.replace(/\\x1B\\[[0-9;]*[a-zA-Z]/g, '');
+            cleaned = cleaned.replace(/\\[[0-9;]*m/g, '');
+
+            // Remove Rich box drawing characters (using unicode ranges)
+            cleaned = cleaned.replace(/[\\u2500-\\u257F]/g, '');
+            cleaned = cleaned.replace(/[\\u2550-\\u256C]/g, '');
+
+            // Clean up extra whitespace from box removal
+            cleaned = cleaned.replace(/^\\s*$/gm, '');
+            cleaned = cleaned.replace(/\\n{3,}/g, '\\n\\n');
+
+            // Format sections with headers
+            cleaned = cleaned.replace(/^(#{1,3})\\s*(.+)$/gm, '<h3 class="result-header">$2</h3>');
+
+            // Format bullet points
+            cleaned = cleaned.replace(/^[\\s]*[-*]\\s*(.+)$/gm, '<li>$1</li>');
+
+            // Format key-value pairs (like "Agent: api")
+            cleaned = cleaned.replace(/^([A-Za-z][A-Za-z\\s]+):\\s*(.+)$/gm, '<div class="info-row"><span class="info-label">$1:</span> <span class="info-value">$2</span></div>');
+
+            // Format success/error indicators
+            cleaned = cleaned.replace(/SUCCESS|Completed|Success/gi, '<span class="status-success">OK</span>');
+            cleaned = cleaned.replace(/ERROR|Failed|FAILED/gi, '<span class="status-error">Error</span>');
+
+            // Remove common emojis
+            cleaned = cleaned.replace(/[\\u{1F300}-\\u{1F9FF}]/gu, '');
+
+            // Convert newlines to breaks
+            cleaned = cleaned.replace(/\\n/g, '<br>');
+
+            // Clean up multiple breaks
+            cleaned = cleaned.replace(/(<br>\\s*){3,}/g, '<br><br>');
+
+            // Wrap in result container
+            return '<div class="result-content">' + cleaned + '</div>';
         }
     </script>
 </body>
