@@ -205,6 +205,47 @@ Project context is stored in `.vibecode/context.json` and includes:
 - Coding conventions
 - Active and completed tasks
 
+## VS Code Extension
+
+The Vibecode AI System includes a VS Code extension for seamless IDE integration.
+
+### Installation
+
+**Option A: Install from VSIX (Recommended)**
+```bash
+code --install-extension vscode-extension/vibecode-0.1.0.vsix
+```
+
+**Option B: Development Mode**
+```bash
+cd vscode-extension
+npm install
+npm run compile
+# Press F5 in VS Code to launch Extension Development Host
+```
+
+### Extension Features
+
+- **Activity Bar**: Agents, Workflows, and History views in the sidebar
+- **Commands**:
+  - `Ctrl+Shift+V` - Execute a task with AI
+  - `Ctrl+Shift+A` - Analyze selected code
+- **Context Menu**: Right-click on selected code to:
+  - Analyze Selection
+  - Explain This Code
+  - Refactor This Code
+  - Generate Tests
+- **Output Channel**: View AI responses in the "Vibecode AI" output channel
+
+### Extension Configuration
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `vibecode.pythonPath` | `python` | Path to Python executable |
+| `vibecode.vibecodeCliPath` | (auto) | Path to vibe.py |
+| `vibecode.defaultAgent` | `auto` | Default agent for tasks |
+| `vibecode.showNotifications` | `true` | Show completion notifications |
+
 ## License
 
 MIT License
