@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(git status:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit: Vibecode AI System v0.2.0\n\nFeatures:\n- Multi-agent architecture \\(API, CLI, Batch, Antigravity agents\\)\n- Workflow engine with YAML-based workflow definitions\n- Smart task routing with confidence scoring\n- Context persistence across sessions\n- VSCode extension with interactive panel\n- Comprehensive unit tests \\(101 tests\\)\n\nComponents:\n- agents/: AI agent implementations\n- core/: Orchestrator, TaskRouter, WorkflowEngine, ContextManager\n- utils/: Cost tracker, Logger\n- workflows/: Predefined workflow templates\n- tests/: Unit tests with pytest\n- vscode-extension/: VS Code integration\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(gh auth:*)",
+      "Bash(gh repo create:*)",
+      "Bash(npm install)",
+      "Bash(npm run compile:*)",
+      "Bash(code:*)",
+      "Bash(npx vsce package:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nImprove VSCode extension output formatting\n\nChanges:\n- Add LICENSE file for extension\n- Remove icon requirement from package.json\n- Improve output formatting in webview panel:\n  - Remove ANSI escape codes\n  - Remove Rich box drawing characters\n  - Clean up emojis and special characters\n  - Add styled CSS for results display\n  - Format key-value pairs, headers, and lists\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd SESSION-LOG.md for context preservation between agent sessions\n\nDocuments completed work on VSCode extension, output formatting fixes,\nand provides instructions for resuming development.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C \"D:/project/control-agent-full\" log --oneline -20)",
+      "Bash(git commit:*)"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "project_name": "control-agent-full",
+  "created_at": "2026-01-29T14:54:28.909365",
+  "tech_stack": [
+    "Python",
+    "Anthropic",
+    "Rich"
+  ],
+  "architecture": {},
+  "conventions": {
+    "naming": "snake_case"
+  },
+  "active_tasks": {},
+  "completed_tasks": [
+    {
+      "description": "Say hello in 5 words or less",
+      "agent": "api",
+      "success": true,
+      "execution_time": 5.194317,
+      "completed_at": "2026-01-29T14:56:51.056038"
+    },
+    {
+      "description": "Analyze the current code and explain its architecture",
+      "agent": "api",
+      "success": true,
+      "execution_time": 27.856662,
+      "completed_at": "2026-01-29T17:43:09.130101"
+    },
+    {
+      "description": "Generate unit tests for this code",
+      "agent": "api",
+      "success": true,
+      "execution_time": 43.27012,
+      "completed_at": "2026-01-29T17:44:30.040437"
+    },
+    {
+      "description": "Hello, giới thiệu ngắn gọn về bạn",
+      "agent": "api",
+      "success": true,
+      "execution_time": 8.00972,
+      "completed_at": "2026-01-29T17:51:08.160013"
+    },
+    {
+      "description": "HELLO BẠN",
+      "agent": "antigravity",
+      "success": true,
+      "execution_time": 8e-06,
+      "completed_at": "2026-01-29T18:01:49.750291"
+    },
+    {
+      "description": "CHÀO BẠN",
+      "agent": "api",
+      "success": true,
+      "execution_time": 9.991171,
+      "completed_at": "2026-01-29T18:07:06.633318"
+    },
+    {
+      "description": "TỐI ƯU HIỆU SUẤT ĐI",
+      "agent": "api",
+      "success": true,
+      "execution_time": 19.594508,
+      "completed_at": "2026-01-29T18:09:06.607926"
+    },
+    {
+      "description": "Explain how this code works  bằng tiếng việt nam",
+      "agent": "api",
+      "success": true,
+      "execution_time": 20.349066,
+      "completed_at": "2026-01-29T18:16:05.142515"
+    }
+  ],
+  "knowledge_base": {},
+  "updated_at": "2026-01-29T18:16:05.142529"
+}
