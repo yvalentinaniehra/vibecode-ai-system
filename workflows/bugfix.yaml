@@ -1,0 +1,106 @@
+# Bug Fix Workflow
+# Systematic approach to fixing bugs
+
+name: Bug Fix
+description: Systematic bug analysis and resolution
+version: "1.0.0"
+author: Vibecode AI System
+tags:
+  - bugfix
+  - debugging
+  - maintenance
+
+variables:
+  bug_description: "Bug description here"
+  affected_area: "src"
+  priority: "medium"
+
+steps:
+  - id: reproduce_bug
+    name: Reproduce & Analyze Bug
+    description: Understand and reproduce the bug
+    agent: api
+    prompt: |
+      Analyze this bug report and determine:
+      1. Root cause hypothesis
+      2. Steps to reproduce
+      3. Affected components
+      4. Potential fix approaches
+
+      Bug: ${bug_description}
+      Affected area: ${affected_area}
+      Priority: ${priority}
+    save_output: bug_analysis
+    timeout: 120
+
+  - id: locate_code
+    name: Locate Problematic Code
+    description: Find the exact location of the bug
+    agent: cli
+    depends_on:
+      - reproduce_bug
+    prompt: |
+      Based on this analysis:
+      ${outputs.bug_analysis}
+
+      Search the codebase in ${affected_area} to find:
+      1. The exact file(s) containing the bug
+      2. The specific function/method involved
+      3. Related code that might be affected
+    save_output: code_location
+    timeout: 180
+
+  - id: implement_fix
+    name: Implement Fix
+    description: Apply the bug fix
+    agent: cli
+    depends_on:
+      - locate_code
+    prompt: |
+      Fix the bug based on:
+      Analysis: ${outputs.bug_analysis}
+      Location: ${outputs.code_location}
+
+      Apply the fix carefully and ensure:
+      1. The bug is resolved
+      2. No new issues are introduced
+      3. Code follows existing patterns
+    save_output: fix_result
+    timeout: 300
+    retry: 1
+
+  - id: verify_fix
+    name: Verify Fix
+    description: Verify the bug is fixed
+    agent: cli
+    depends_on:
+      - implement_fix
+    prompt: |
+      Verify that the bug fix works:
+      1. Run relevant tests
+      2. Check edge cases
+      3. Confirm the original issue is resolved
+
+      Bug: ${bug_description}
+    save_output: verification
+    timeout: 180
+
+  - id: document_fix
+    name: Document Fix
+    description: Document what was fixed and why
+    agent: api
+    depends_on:
+      - verify_fix
+    prompt: |
+      Create a brief summary of the bug fix:
+
+      Original bug: ${bug_description}
+      Analysis: ${outputs.bug_analysis}
+      Fix applied: ${outputs.fix_result}
+
+      Include:
+      1. What was the root cause
+      2. How it was fixed
+      3. Any preventive measures for the future
+    save_output: fix_documentation
+    timeout: 90

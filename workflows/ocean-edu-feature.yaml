@@ -1,0 +1,174 @@
+# Ocean Edu CRM Feature Workflow
+# Specialized workflow for Ocean Education CRM development
+
+name: Ocean Edu CRM Feature
+description: Full-cycle feature development for Ocean Edu CRM system
+version: "1.0.0"
+author: Vibecode AI System
+tags:
+  - ocean-edu
+  - crm
+  - feature
+
+variables:
+  feature_name: "New CRM Feature"
+  feature_description: "Feature description"
+  module: "sales"
+  target_directory: "src"
+
+steps:
+  - id: context_grounding
+    name: Phase 0 - Context Grounding
+    description: Load and verify project context
+    agent: api
+    prompt: |
+      Load the Ocean Edu CRM context:
+      1. Review existing architecture patterns
+      2. Check current module structure for ${module}
+      3. Identify related components
+      4. Note any security considerations for CRM data
+
+      Feature: ${feature_name}
+      Module: ${module}
+    save_output: context
+    timeout: 120
+
+  - id: requirements_analysis
+    name: Analyze CRM Requirements
+    description: Analyze feature requirements specific to CRM
+    agent: api
+    depends_on:
+      - context_grounding
+    prompt: |
+      Analyze requirements for Ocean Edu CRM:
+
+      Feature: ${feature_name}
+      Description: ${feature_description}
+      Module: ${module}
+
+      Context: ${outputs.context}
+
+      Consider:
+      1. CRM-specific data models (leads, customers, interactions)
+      2. Sales workflow integration
+      3. KPI/metrics impact
+      4. User roles and permissions
+      5. Data privacy requirements
+    save_output: requirements
+    timeout: 150
+
+  - id: design_component
+    name: Design CRM Component
+    description: Design the component following CRM patterns
+    agent: api
+    depends_on:
+      - requirements_analysis
+    prompt: |
+      Design the ${feature_name} component for Ocean Edu CRM:
+
+      Requirements: ${outputs.requirements}
+
+      Include:
+      1. Component architecture
+      2. Data model changes
+      3. API endpoints needed
+      4. UI/UX considerations for sales team
+      5. Integration points with existing modules
+    save_output: design
+    timeout: 180
+
+  - id: implement_backend
+    name: Implement Backend
+    description: Implement backend logic and APIs
+    agent: cli
+    depends_on:
+      - design_component
+    prompt: |
+      Implement the backend for ${feature_name}:
+
+      Design: ${outputs.design}
+      Target: ${target_directory}
+
+      Create:
+      1. Data models/schemas
+      2. API endpoints
+      3. Business logic
+      4. Validation rules
+    save_output: backend_result
+    timeout: 300
+    retry: 1
+
+  - id: implement_frontend
+    name: Implement Frontend
+    description: Implement UI components
+    agent: cli
+    depends_on:
+      - implement_backend
+    prompt: |
+      Implement the frontend for ${feature_name}:
+
+      Design: ${outputs.design}
+      Backend: ${outputs.backend_result}
+
+      Create:
+      1. React/UI components
+      2. State management
+      3. API integration
+      4. Form validation
+    save_output: frontend_result
+    timeout: 300
+    retry: 1
+
+  - id: write_tests
+    name: Write Tests
+    description: Create comprehensive tests
+    agent: cli
+    depends_on:
+      - implement_backend
+      - implement_frontend
+    prompt: |
+      Write tests for ${feature_name}:
+
+      1. Unit tests for business logic
+      2. API integration tests
+      3. Component tests for UI
+      4. E2E test scenarios for sales workflow
+    save_output: tests
+    timeout: 240
+
+  - id: security_check
+    name: Security Check
+    description: Verify security for CRM data
+    agent: api
+    depends_on:
+      - implement_backend
+    prompt: |
+      Security review for ${feature_name}:
+
+      Check:
+      1. Data masking for sensitive fields (phone, email)
+      2. Role-based access control
+      3. Input validation
+      4. SQL injection prevention
+      5. XSS prevention
+      6. Audit logging
+    save_output: security_check
+    timeout: 120
+
+  - id: documentation
+    name: Generate Documentation
+    description: Create feature documentation
+    agent: api
+    depends_on:
+      - implement_frontend
+      - security_check
+    prompt: |
+      Document the ${feature_name} feature:
+
+      1. Feature overview
+      2. User guide for sales team
+      3. API documentation
+      4. Configuration options
+      5. Troubleshooting guide
+    save_output: documentation
+    timeout: 120

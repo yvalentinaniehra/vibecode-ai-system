@@ -1,0 +1,101 @@
+# Code Review Workflow
+# Comprehensive code review process
+
+name: Code Review
+description: Thorough code review with multiple perspectives
+version: "1.0.0"
+author: Vibecode AI System
+tags:
+  - review
+  - quality
+  - security
+
+variables:
+  target_path: "src"
+  review_scope: "full"
+  focus_areas: "quality,security,performance"
+
+steps:
+  - id: code_quality
+    name: Code Quality Review
+    description: Review code for quality and best practices
+    agent: api
+    prompt: |
+      Review the code in ${target_path} for quality:
+
+      Check:
+      1. Code readability and clarity
+      2. Naming conventions
+      3. Function/method complexity
+      4. DRY principle adherence
+      5. SOLID principles
+      6. Error handling patterns
+
+      Scope: ${review_scope}
+    save_output: quality_review
+    timeout: 180
+
+  - id: security_review
+    name: Security Review
+    description: Check for security vulnerabilities
+    agent: api
+    prompt: |
+      Perform a security review of code in ${target_path}:
+
+      Look for:
+      1. Input validation issues
+      2. SQL injection vulnerabilities
+      3. XSS vulnerabilities
+      4. Authentication/authorization flaws
+      5. Sensitive data exposure
+      6. Dependency vulnerabilities
+
+      OWASP Top 10 checklist
+    save_output: security_review
+    timeout: 180
+
+  - id: performance_review
+    name: Performance Review
+    description: Analyze performance considerations
+    agent: api
+    prompt: |
+      Review code in ${target_path} for performance:
+
+      Analyze:
+      1. Algorithm efficiency (time/space complexity)
+      2. Database query optimization
+      3. Memory usage patterns
+      4. Caching opportunities
+      5. Async/parallel processing opportunities
+      6. Resource cleanup
+    save_output: performance_review
+    timeout: 180
+
+  - id: consolidate_feedback
+    name: Consolidate Feedback
+    description: Combine all review findings
+    agent: api
+    depends_on:
+      - code_quality
+      - security_review
+      - performance_review
+    prompt: |
+      Consolidate all review findings into a prioritized report:
+
+      Quality Review:
+      ${outputs.quality_review}
+
+      Security Review:
+      ${outputs.security_review}
+
+      Performance Review:
+      ${outputs.performance_review}
+
+      Create:
+      1. Executive summary
+      2. Critical issues (must fix)
+      3. Important issues (should fix)
+      4. Suggestions (nice to have)
+      5. Action items with priority
+    save_output: consolidated_review
+    timeout: 120

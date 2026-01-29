@@ -1,0 +1,122 @@
+# Feature Development Workflow
+# Automates the full feature development lifecycle
+
+name: Feature Development
+description: End-to-end feature development from analysis to implementation
+version: "1.0.0"
+author: Vibecode AI System
+tags:
+  - feature
+  - development
+  - full-cycle
+
+variables:
+  feature_name: "New Feature"
+  feature_description: "Feature description here"
+  target_directory: "src"
+
+steps:
+  - id: analyze_requirements
+    name: Analyze Requirements
+    description: Understand and analyze the feature requirements
+    agent: api
+    prompt: |
+      Analyze the following feature requirements and provide:
+      1. Key functionality needed
+      2. Technical considerations
+      3. Potential challenges
+      4. Suggested approach
+
+      Feature: ${feature_name}
+      Description: ${feature_description}
+    save_output: requirements_analysis
+    timeout: 120
+
+  - id: design_architecture
+    name: Design Architecture
+    description: Design the technical architecture for the feature
+    agent: api
+    depends_on:
+      - analyze_requirements
+    prompt: |
+      Based on the requirements analysis:
+      ${outputs.requirements_analysis}
+
+      Design the architecture for this feature:
+      1. Component structure
+      2. Data flow
+      3. API design (if applicable)
+      4. File structure to create/modify
+
+      Target directory: ${target_directory}
+    save_output: architecture_design
+    timeout: 180
+
+  - id: implement_feature
+    name: Implement Feature
+    description: Write the actual code for the feature
+    agent: cli
+    depends_on:
+      - design_architecture
+    prompt: |
+      Implement the feature based on this design:
+      ${outputs.architecture_design}
+
+      Feature: ${feature_name}
+      Create the necessary files in ${target_directory}
+    save_output: implementation_result
+    timeout: 300
+    retry: 1
+
+  - id: write_tests
+    name: Write Tests
+    description: Create unit tests for the feature
+    agent: cli
+    depends_on:
+      - implement_feature
+    prompt: |
+      Write comprehensive unit tests for the feature just implemented:
+      ${feature_name}
+
+      Cover:
+      1. Happy path scenarios
+      2. Edge cases
+      3. Error handling
+    save_output: test_result
+    timeout: 240
+
+  - id: code_review
+    name: Code Review
+    description: Review the implemented code for quality
+    agent: api
+    depends_on:
+      - implement_feature
+    prompt: |
+      Review the code that was just implemented for ${feature_name}.
+
+      Check for:
+      1. Code quality and best practices
+      2. Potential bugs or issues
+      3. Performance considerations
+      4. Security concerns
+      5. Suggestions for improvement
+    save_output: review_result
+    timeout: 180
+
+  - id: documentation
+    name: Generate Documentation
+    description: Create documentation for the feature
+    agent: api
+    depends_on:
+      - implement_feature
+      - code_review
+    prompt: |
+      Generate documentation for the ${feature_name} feature:
+
+      Include:
+      1. Feature overview
+      2. Usage examples
+      3. API reference (if applicable)
+      4. Configuration options
+    save_output: documentation
+    timeout: 120

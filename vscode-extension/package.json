@@ -1,0 +1,219 @@
+{
+  "name": "vibecode",
+  "displayName": "Vibecode AI",
+  "description": "Unified AI orchestration for software development - VS Code integration",
+  "version": "0.1.0",
+  "publisher": "vibecode",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Machine Learning",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "claude",
+    "anthropic",
+    "code assistant",
+    "orchestration"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "icon": "media/icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vibecode.executeTask",
+        "title": "Execute Task",
+        "category": "Vibecode",
+        "icon": "$(play)"
+      },
+      {
+        "command": "vibecode.openPanel",
+        "title": "Open Vibecode Panel",
+        "category": "Vibecode",
+        "icon": "$(robot)"
+      },
+      {
+        "command": "vibecode.runWorkflow",
+        "title": "Run Workflow",
+        "category": "Vibecode",
+        "icon": "$(run-all)"
+      },
+      {
+        "command": "vibecode.showContext",
+        "title": "Show Project Context",
+        "category": "Vibecode",
+        "icon": "$(info)"
+      },
+      {
+        "command": "vibecode.analyzeSelection",
+        "title": "Analyze Selection with AI",
+        "category": "Vibecode",
+        "icon": "$(search)"
+      },
+      {
+        "command": "vibecode.explainCode",
+        "title": "Explain This Code",
+        "category": "Vibecode"
+      },
+      {
+        "command": "vibecode.refactorCode",
+        "title": "Refactor This Code",
+        "category": "Vibecode"
+      },
+      {
+        "command": "vibecode.generateTests",
+        "title": "Generate Tests",
+        "category": "Vibecode"
+      },
+      {
+        "command": "vibecode.fixError",
+        "title": "Fix This Error",
+        "category": "Vibecode"
+      },
+      {
+        "command": "vibecode.refreshWorkflows",
+        "title": "Refresh Workflows",
+        "category": "Vibecode",
+        "icon": "$(refresh)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vibecode",
+          "title": "Vibecode AI",
+          "icon": "media/vibecode-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "vibecode": [
+        {
+          "id": "vibecode.agents",
+          "name": "Agents"
+        },
+        {
+          "id": "vibecode.workflows",
+          "name": "Workflows"
+        },
+        {
+          "id": "vibecode.history",
+          "name": "Task History"
+        }
+      ]
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "vibecode.analyzeSelection",
+          "when": "editorHasSelection",
+          "group": "vibecode@1"
+        },
+        {
+          "command": "vibecode.explainCode",
+          "when": "editorHasSelection",
+          "group": "vibecode@2"
+        },
+        {
+          "command": "vibecode.refactorCode",
+          "when": "editorHasSelection",
+          "group": "vibecode@3"
+        },
+        {
+          "command": "vibecode.generateTests",
+          "when": "editorHasSelection",
+          "group": "vibecode@4"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "vibecode.refreshWorkflows",
+          "when": "view == vibecode.workflows",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "vibecode.runWorkflow",
+          "when": "view == vibecode.workflows",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Vibecode AI",
+      "properties": {
+        "vibecode.pythonPath": {
+          "type": "string",
+          "default": "python",
+          "description": "Path to Python executable"
+        },
+        "vibecode.vibecodeCliPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to vibe.py CLI (auto-detected if empty)"
+        },
+        "vibecode.defaultAgent": {
+          "type": "string",
+          "enum": ["auto", "api", "cli", "batch", "antigravity"],
+          "default": "auto",
+          "description": "Default agent for task execution"
+        },
+        "vibecode.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notifications for task completion"
+        },
+        "vibecode.autoSaveContext": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically save project context"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "vibecode.executeTask",
+        "key": "ctrl+shift+v",
+        "mac": "cmd+shift+v"
+      },
+      {
+        "command": "vibecode.analyzeSelection",
+        "key": "ctrl+shift+a",
+        "mac": "cmd+shift+a",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "vibecode.openPanel",
+        "key": "ctrl+shift+p",
+        "mac": "cmd+shift+p"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.x",
+    "@typescript-eslint/eslint-plugin": "^6.x",
+    "@typescript-eslint/parser": "^6.x",
+    "eslint": "^8.x",
+    "typescript": "^5.3.0",
+    "@vscode/vsce": "^2.x"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,66 @@
+# Quick Task Workflow
+# For simple, single-purpose tasks
+
+name: Quick Task
+description: Execute a simple task with analysis and implementation
+version: "1.0.0"
+author: Vibecode AI System
+tags:
+  - quick
+  - simple
+  - adhoc
+
+variables:
+  task_description: "Task to perform"
+  target_path: "."
+
+steps:
+  - id: analyze
+    name: Quick Analysis
+    description: Brief analysis of the task
+    agent: api
+    prompt: |
+      Quickly analyze this task and provide approach:
+      ${task_description}
+
+      Target: ${target_path}
+
+      Provide:
+      1. What needs to be done
+      2. Best approach
+      3. Any risks or considerations
+    save_output: analysis
+    timeout: 60
+
+  - id: execute
+    name: Execute Task
+    description: Perform the task
+    agent: auto
+    depends_on:
+      - analyze
+    prompt: |
+      Execute this task:
+      ${task_description}
+
+      Approach: ${outputs.analysis}
+      Target: ${target_path}
+    save_output: result
+    timeout: 180
+    retry: 1
+
+  - id: verify
+    name: Quick Verify
+    description: Verify the task was completed
+    agent: api
+    depends_on:
+      - execute
+    prompt: |
+      Verify the task was completed successfully:
+      Task: ${task_description}
+      Result: ${outputs.result}
+
+      Confirm:
+      1. Task completed as expected
+      2. No issues introduced
+    save_output: verification
+    timeout: 60
