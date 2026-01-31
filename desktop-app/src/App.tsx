@@ -8,6 +8,9 @@ import Dashboard from './pages/Dashboard';
 import TaskExecutor from './pages/TaskExecutor';
 import WorkflowRunner from './pages/WorkflowRunner';
 import WorkflowGenerator from './pages/WorkflowGenerator';
+import MarketResearch from './pages/MarketResearch';
+import FeasibilityChecker from './pages/FeasibilityChecker';
+import ProductionMonitor from './pages/ProductionMonitor';
 import Settings from './pages/Settings';
 import SkillsManager from './pages/SkillsManager';
 import SkillFactory from './pages/SkillFactory/SkillFactory';
@@ -70,6 +73,12 @@ function App() {
         return <SkillFactory />;
       case 'settings':
         return <Settings />;
+      case 'market-research':
+        return <MarketResearch />;
+      case 'feasibility':
+        return <FeasibilityChecker />;
+      case 'production-monitor':
+        return <ProductionMonitor />;
       default:
         return <TaskExecutor />;
     }

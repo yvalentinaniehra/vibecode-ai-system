@@ -53,9 +53,12 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, onItemClick, onProjectCha
         { id: 'agents', icon: <AgentsIcon />, label: 'Agents' },
         { id: 'workflows', icon: <WorkflowsIcon />, label: 'Workflows' },
         { id: 'workflow-generator', icon: <GeneratorIcon />, label: 'Generator' },
+        { id: 'market-research', icon: <ResearchIcon />, label: 'Research' },
+        { id: 'feasibility', icon: <FeasibilityIcon />, label: 'Feasibility' },
         { id: 'skills', icon: <SkillsIcon />, label: 'Skills' },
         { id: 'factory', icon: <FactoryIcon />, label: 'Factory' },
         { id: 'tasks', icon: <TasksIcon />, label: 'Tasks' },
+        { id: 'production-monitor', icon: <MonitorIcon />, label: 'Monitor' },
         { id: 'settings', icon: <SettingsIcon />, label: 'Settings' },
     ];
 
@@ -189,6 +192,29 @@ const GeneratorIcon = () => (
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
         <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
         <circle cx="12" cy="12" r="2" fill="currentColor" />
+    </svg>
+);
+
+const ResearchIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="11" cy="11" r="8" />
+        <path d="M21 21l-4.35-4.35" />
+        <path d="M11 8v6M8 11h6" />
+    </svg>
+);
+
+const FeasibilityIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+);
+
+const MonitorIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
     </svg>
 );
 
