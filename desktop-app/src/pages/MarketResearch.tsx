@@ -163,7 +163,7 @@ const MarketResearch: React.FC<MarketResearchProps> = ({ onNavigate, onProceedWi
         }
     };
 
-    const exportToBRD = () => {
+    const exportToBRD = async () => {
         if (!output) return;
 
         const brdContent = `# Business Requirement Document (BRD)
@@ -186,17 +186,26 @@ ${output.executiveSummary}
 *Sources: ${output.sources.join(', ')}*
 `;
 
-        // Create downloadable file
-        const blob = new Blob([brdContent], { type: 'text/markdown' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `BRD-${input.productIdea.replace(/\s+/g, '-')}.md`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        alert('✅ BRD exported successfully!');
+        try {
+            const { save } = await import('@tauri-apps/plugin-dialog');
+            const { writeTextFile } = await import('@tauri-apps/plugin-fs');
+
+            const filePath = await save({
+                defaultPath: `BRD-${input.productIdea.replace(/\s+/g, '-')}.md`,
+                filters: [{
+                    name: 'Markdown',
+                    extensions: ['md']
+                }]
+            });
+
+            if (filePath) {
+                await writeTextFile(filePath, brdContent);
+                alert('✅ BRD exported successfully!');
+            }
+        } catch (err) {
+            console.error('Export failed:', err);
+            alert('❌ Export failed: ' + (err instanceof Error ? err.message : 'Unknown error'));
+        }
     };
 
     const handleProceedToFeasibility = () => {
