@@ -119,6 +119,7 @@ pub struct EnhancedResearch {
 mod antigravity;
 mod services;
 mod api_server;
+mod workflow_generator;
 
 // ============================================================================
 // End Modules
@@ -2155,7 +2156,11 @@ pub fn run() {
             // OAuth Commands (Phase 3.2)
             start_google_oauth,
             refresh_google_token,
-            revoke_google_account
+            revoke_google_account,
+            // Workflow Generator Commands
+            workflow_generator::generate_workflow,
+            workflow_generator::save_workflow,
+            workflow_generator::list_agents
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

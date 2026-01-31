@@ -7,6 +7,7 @@ import ChangesPanel from './components/ChangesPanel/ChangesPanel';
 import Dashboard from './pages/Dashboard';
 import TaskExecutor from './pages/TaskExecutor';
 import WorkflowRunner from './pages/WorkflowRunner';
+import WorkflowGenerator from './pages/WorkflowGenerator';
 import Settings from './pages/Settings';
 import SkillsManager from './pages/SkillsManager';
 import SkillFactory from './pages/SkillFactory/SkillFactory';
@@ -59,6 +60,8 @@ function App() {
         return <Dashboard />;
       case 'workflows':
         return <WorkflowRunner />;
+      case 'workflow-generator':
+        return <WorkflowGenerator />;
       case 'tasks':
         return <TaskExecutor />;
       case 'skills':

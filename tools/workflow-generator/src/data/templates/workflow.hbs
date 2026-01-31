@@ -1,0 +1,75 @@
+---
+description: {{description}}
+---
+
+# {{emoji}} {{title}}
+
+> **Agent:** {{agentName}}
+> **Phase:** {{phase}}
+> **AI Model:** {{aiModel}}
+> **Input:** {{input}}
+> **Output:** {{output}}
+
+## 📋 Prerequisites
+
+```yaml
+required:
+{{#each prerequisites}}
+  - {{this}}
+{{/each}}
+```
+
+---
+
+{{#each steps}}
+## {{emoji}} Step {{number}}: {{title}}
+
+{{description}}
+
+{{#if turbo}}
+// turbo
+{{/if}}
+{{#if code}}
+```{{codeLanguage}}
+{{code}}
+```
+{{/if}}
+
+---
+
+{{/each}}
+
+## 🔧 MCP Tools Used
+
+{{#each tools}}
+- `{{this}}`
+{{/each}}
+
+---
+
+## 📤 Output & Handoff
+
+### Deliverables
+{{#each deliverables}}
+- {{this}}
+{{/each}}
+
+### Handoff to Next Agent
+
+```yaml
+handoff:
+  to_agent: {{nextAgent}}
+  artifacts:
+{{#each artifacts}}
+    - {{this}}
+{{/each}}
+  action: "{{handoffAction}}"
+```
+
+---
+
+## 📎 Related Files
+
+{{#each relatedFiles}}
+- [{{this.name}}]({{this.path}})
+{{/each}}

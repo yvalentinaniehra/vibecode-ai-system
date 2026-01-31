@@ -1,0 +1,52 @@
+{
+    "name": "@vibecode/workflow-generator",
+    "version": "1.0.0",
+    "description": "Auto-generate workflow files from user stories",
+    "type": "module",
+    "main": "dist/index.js",
+    "bin": {
+        "workflow": "dist/cli/index.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsx src/cli/index.ts",
+        "test": "vitest",
+        "test:coverage": "vitest --coverage",
+        "lint": "eslint src --ext .ts",
+        "format": "prettier --write \"src/**/*.ts\"",
+        "workflow:create": "tsx src/cli/index.ts create",
+        "workflow:validate": "tsx src/cli/index.ts validate"
+    },
+    "keywords": [
+        "workflow",
+        "automation",
+        "ai",
+        "vibecode"
+    ],
+    "author": "Vibecode AI System",
+    "license": "MIT",
+    "dependencies": {
+        "@anthropic-ai/sdk": "^0.32.1",
+        "chalk": "^5.3.0",
+        "commander": "^12.1.0",
+        "handlebars": "^4.7.8",
+        "inquirer": "^12.0.1",
+        "yaml": "^2.6.1",
+        "zod": "^3.24.1"
+    },
+    "devDependencies": {
+        "@types/inquirer": "^9.0.7",
+        "@types/node": "^22.10.5",
+        "@typescript-eslint/eslint-plugin": "^8.19.1",
+        "@typescript-eslint/parser": "^8.19.1",
+        "@vitest/coverage-v8": "^2.1.8",
+        "eslint": "^9.18.0",
+        "prettier": "^3.4.2",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.2",
+        "vitest": "^2.1.8"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}

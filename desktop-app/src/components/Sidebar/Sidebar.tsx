@@ -52,6 +52,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, onItemClick, onProjectCha
         { id: 'dashboard', icon: <DashboardIcon />, label: 'Dashboard' },
         { id: 'agents', icon: <AgentsIcon />, label: 'Agents' },
         { id: 'workflows', icon: <WorkflowsIcon />, label: 'Workflows' },
+        { id: 'workflow-generator', icon: <GeneratorIcon />, label: 'Generator' },
         { id: 'skills', icon: <SkillsIcon />, label: 'Skills' },
         { id: 'factory', icon: <FactoryIcon />, label: 'Factory' },
         { id: 'tasks', icon: <TasksIcon />, label: 'Tasks' },
@@ -180,6 +181,14 @@ const HelpIcon = () => (
         <circle cx="12" cy="12" r="10" />
         <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
         <circle cx="12" cy="17" r="0.5" fill="currentColor" />
+    </svg>
+);
+
+const GeneratorIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+        <circle cx="12" cy="12" r="2" fill="currentColor" />
     </svg>
 );
 
