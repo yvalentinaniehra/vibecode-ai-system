@@ -137,15 +137,23 @@ function App() {
           {showExplorer ? '◀' : '▶'}
         </button>
 
-        {/* Main Area: Either FileViewer or Page Content */}
-        {selectedFile ? (
-          <FileViewer
-            filePath={selectedFile}
-            onClose={handleCloseFile}
-          />
-        ) : (
-          renderPage()
-        )}
+        {/* Split Layout: Page Content + FileViewer */}
+        <div className={`content-area ${selectedFile ? 'with-viewer' : ''}`}>
+          {/* Page Content - Always visible */}
+          <div className="page-content">
+            {renderPage()}
+          </div>
+
+          {/* FileViewer Panel - Side panel when file is selected */}
+          {selectedFile && (
+            <div className="file-viewer-panel">
+              <FileViewer
+                filePath={selectedFile}
+                onClose={handleCloseFile}
+              />
+            </div>
+          )}
+        </div>
       </main>
     </div>
   );

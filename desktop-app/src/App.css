@@ -157,12 +157,40 @@ body {
   border-color: var(--color-primary);
 }
 
+/* Content Area - Split Layout */
+.content-area {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  margin-left: 20px;
+  /* Space for toggle button */
+}
+
+.content-area.with-viewer .page-content {
+  flex: 1;
+  min-width: 300px;
+  border-right: 1px solid #333;
+}
+
+.content-area.with-viewer .file-viewer-panel {
+  width: 50%;
+  min-width: 400px;
+  max-width: 60%;
+}
+
+/* Page Content */
 .page-content {
   flex: 1;
   padding: var(--spacing-lg);
   overflow-y: auto;
-  margin-left: 20px;
-  /* Space for toggle button */
+}
+
+/* File Viewer Panel */
+.file-viewer-panel {
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+  overflow: hidden;
 }
 
 /* ============================================
