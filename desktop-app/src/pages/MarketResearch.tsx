@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
 import './MarketResearch.css';
 
+// Shared data type matching App.tsx
+interface SharedBRDData {
+    productIdea: string;
+    industry: string;
+    targetAudience: string;
+    geography: string;
+    brdSummary: string;
+}
+
 interface MarketResearchProps {
     onNavigate?: (page: string) => void;
+    onProceedWithData?: (page: string, data: SharedBRDData) => void;
 }
 
 interface ResearchInput {
@@ -43,7 +53,7 @@ interface BRDOutput {
     confidenceScore: number;
 }
 
-const MarketResearch: React.FC<MarketResearchProps> = ({ onNavigate }) => {
+const MarketResearch: React.FC<MarketResearchProps> = ({ onNavigate, onProceedWithData }) => {
     const [input, setInput] = useState<ResearchInput>({
         productIdea: '',
         industry: '',
@@ -190,7 +200,22 @@ ${output.executiveSummary}
     };
 
     const handleProceedToFeasibility = () => {
-        if (onNavigate) {
+        if (!output) {
+            alert('Vui lòng chạy Research trước!');
+            return;
+        }
+
+        const brdData: SharedBRDData = {
+            productIdea: input.productIdea,
+            industry: input.industry,
+            targetAudience: input.targetAudience,
+            geography: input.geography,
+            brdSummary: output.executiveSummary,
+        };
+
+        if (onProceedWithData) {
+            onProceedWithData('feasibility', brdData);
+        } else if (onNavigate) {
             onNavigate('feasibility');
         } else {
             alert('Navigating to Feasibility Checker...');

@@ -1,5 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FeasibilityChecker.css';
+
+// Shared data type matching App.tsx
+interface SharedBRDData {
+    productIdea: string;
+    industry: string;
+    targetAudience: string;
+    geography: string;
+    brdSummary: string;
+}
+
+interface FeasibilityCheckerProps {
+    initialData?: SharedBRDData | null;
+}
 
 interface FeasibilityInput {
     productIdea: string;
@@ -28,7 +41,7 @@ interface FeasibilityOutput {
     analysis: string;
 }
 
-const FeasibilityChecker: React.FC = () => {
+const FeasibilityChecker: React.FC<FeasibilityCheckerProps> = ({ initialData }) => {
     const [input, setInput] = useState<FeasibilityInput>({
         productIdea: '',
         brdSummary: '',
@@ -42,6 +55,17 @@ const FeasibilityChecker: React.FC = () => {
     const [output, setOutput] = useState<FeasibilityOutput | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [techStackInput, setTechStackInput] = useState('');
+
+    // Populate form when data is passed from MarketResearch
+    useEffect(() => {
+        if (initialData) {
+            setInput(prev => ({
+                ...prev,
+                productIdea: initialData.productIdea,
+                brdSummary: initialData.brdSummary,
+            }));
+        }
+    }, [initialData]);
 
     const handleInputChange = (field: keyof FeasibilityInput, value: unknown) => {
         setInput(prev => ({ ...prev, [field]: value }));

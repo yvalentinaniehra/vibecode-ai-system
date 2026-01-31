@@ -15,10 +15,28 @@ import Settings from './pages/Settings';
 import SkillsManager from './pages/SkillsManager';
 import SkillFactory from './pages/SkillFactory/SkillFactory';
 
+// Shared data type for passing between pages
+interface SharedBRDData {
+  productIdea: string;
+  industry: string;
+  targetAudience: string;
+  geography: string;
+  brdSummary: string;
+}
+
 function App() {
   const [activePage, setActivePage] = useState('tasks'); // Default to Tasks/Chat
   const [currentProject, setCurrentProject] = useState<string | null>(null);
   const [showExplorer, setShowExplorer] = useState(true);
+  const [sharedBRD, setSharedBRD] = useState<SharedBRDData | null>(null);
+
+  // Handler for navigating with data
+  const handleNavigateWithData = (page: string, data?: SharedBRDData) => {
+    if (data) {
+      setSharedBRD(data);
+    }
+    setActivePage(page);
+  };
 
   useEffect(() => {
     loadSavedProject();
@@ -74,9 +92,9 @@ function App() {
       case 'settings':
         return <Settings />;
       case 'market-research':
-        return <MarketResearch onNavigate={setActivePage} />;
+        return <MarketResearch onNavigate={setActivePage} onProceedWithData={handleNavigateWithData} />;
       case 'feasibility':
-        return <FeasibilityChecker />;
+        return <FeasibilityChecker initialData={sharedBRD} />;
       case 'production-monitor':
         return <ProductionMonitor />;
       default:
