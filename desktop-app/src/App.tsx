@@ -74,7 +74,7 @@ function App() {
       case 'settings':
         return <Settings />;
       case 'market-research':
-        return <MarketResearch />;
+        return <MarketResearch onNavigate={setActivePage} />;
       case 'feasibility':
         return <FeasibilityChecker />;
       case 'production-monitor':

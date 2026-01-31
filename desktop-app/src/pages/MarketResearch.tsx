@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './MarketResearch.css';
 
+interface MarketResearchProps {
+    onNavigate?: (page: string) => void;
+}
+
 interface ResearchInput {
     productIdea: string;
     industry: string;
@@ -39,7 +43,7 @@ interface BRDOutput {
     confidenceScore: number;
 }
 
-const MarketResearch: React.FC = () => {
+const MarketResearch: React.FC<MarketResearchProps> = ({ onNavigate }) => {
     const [input, setInput] = useState<ResearchInput>({
         productIdea: '',
         industry: '',
@@ -178,7 +182,19 @@ ${output.executiveSummary}
         const a = document.createElement('a');
         a.href = url;
         a.download = `BRD-${input.productIdea.replace(/\s+/g, '-')}.md`;
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        alert('✅ BRD exported successfully!');
+    };
+
+    const handleProceedToFeasibility = () => {
+        if (onNavigate) {
+            onNavigate('feasibility');
+        } else {
+            alert('Navigating to Feasibility Checker...');
+        }
     };
 
     return (
@@ -287,7 +303,7 @@ ${output.executiveSummary}
                             <button className="export-btn" onClick={exportToBRD}>
                                 📥 Export BRD.md
                             </button>
-                            <button className="next-btn">
+                            <button className="next-btn" onClick={handleProceedToFeasibility}>
                                 ➡️ Proceed to Feasibility Check
                             </button>
                         </div>

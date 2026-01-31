@@ -75,39 +75,19 @@ const FeasibilityChecker: React.FC = () => {
         setOutput(null);
 
         try {
-            const { invoke } = await import('@tauri-apps/api/core');
+            // Simulate analysis time
+            await new Promise(resolve => setTimeout(resolve, 1500));
 
-            // Use sequential thinking for structured analysis
-            const analysisPrompt = `
-Analyze feasibility for: ${input.productIdea}
+            // Calculate scores based on input (mock scoring logic)
+            const budgetInUSD = input.budgetCurrency === 'VND'
+                ? input.budget / 25000
+                : input.budget;
 
-Constraints:
-- Budget: ${input.budget.toLocaleString()} ${input.budgetCurrency}
-- Timeline: ${input.timeline}
-- Team size: ${input.teamSize} developers
-- Tech stack: ${input.techStack.join(', ')}
-
-${input.brdSummary ? `BRD Summary: ${input.brdSummary}` : ''}
-
-Evaluate:
-1. Technical Feasibility (0-100): Can this be built with current tech?
-2. Financial Feasibility (0-100): Is the budget sufficient?
-3. Legal Feasibility (0-100): Any compliance concerns?
-4. Resource Feasibility (0-100): Can the team deliver in time?
-
-Provide scores and a GO/NO-GO/CONDITIONAL-GO verdict.
-`;
-
-            const result = await invoke<{ content: string }>('perplexity_ask', {
-                query: analysisPrompt,
-            });
-
-            // Parse result and generate scores (simplified for now)
             const scores: FeasibilityScores = {
-                technical: 75,
-                financial: input.budget > 30000000 ? 80 : 50,
-                legal: 85,
-                resource: input.teamSize >= 2 ? 70 : 40,
+                technical: input.techStack.length >= 3 ? 80 : 65,
+                financial: budgetInUSD >= 2000 ? 85 : budgetInUSD >= 1000 ? 70 : 50,
+                legal: 85, // Default high for typical projects
+                resource: input.teamSize >= 3 ? 80 : input.teamSize >= 2 ? 70 : 50,
                 total: 0,
             };
 
@@ -124,23 +104,25 @@ Provide scores and a GO/NO-GO/CONDITIONAL-GO verdict.
                 scores,
                 verdict,
                 conditions: verdict === 'CONDITIONAL-GO' ? [
-                    'Increase budget by 20%',
-                    'Add 1 more developer',
+                    'Tăng ngân sách thêm 20%',
+                    'Thêm 1 developer nữa',
+                    'Xem xét lại timeline',
                 ] : [],
                 risks: [
-                    'Timeline may be tight',
-                    'Tech stack learning curve',
+                    'Timeline có thể bị trễ',
+                    'Learning curve của tech stack mới',
+                    'Phụ thuộc vào third-party APIs',
                 ],
                 nextSteps: verdict !== 'NO-GO' ? [
-                    '→ PM Agent: Create PRD',
-                    '→ UX Agent: Design mockups',
+                    '→ PM Agent: Tạo PRD chi tiết',
+                    '→ UX Agent: Thiết kế mockups',
                     '→ Architect Agent: System design',
                 ] : [
-                    '→ Revise scope',
-                    '→ Increase budget',
-                    '→ Re-run feasibility',
+                    '→ Xem xét lại phạm vi dự án',
+                    '→ Tăng ngân sách',
+                    '→ Chạy lại Feasibility Check',
                 ],
-                analysis: result.content,
+                analysis: `Phân tích Feasibility cho: ${input.productIdea}\n\nKết quả: ${verdict}\n- Technical: ${scores.technical}/100\n- Financial: ${scores.financial}/100\n- Legal: ${scores.legal}/100\n- Resource: ${scores.resource}/100\n\n*Ghi chú: Đây là kết quả mock. Integrate Perplexity MCP để có phân tích thực.*`,
             });
 
         } catch (err) {
@@ -205,7 +187,11 @@ ${output.nextSteps.map(s => `- ${s}`).join('\n')}
         const a = document.createElement('a');
         a.href = url;
         a.download = `Feasibility-${input.productIdea.replace(/\s+/g, '-')}.md`;
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        alert('✅ Report exported successfully!');
     };
 
     return (
