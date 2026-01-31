@@ -9,6 +9,6 @@
     "core:default",
     "opener:default",
     "dialog:default",
-    "fs:allow-write-text-file"
+    "fs:default"
   ]
 }
