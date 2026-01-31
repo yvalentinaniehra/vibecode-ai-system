@@ -1,0 +1,236 @@
+/* ============================================
+   VIBECODE DESIGN SYSTEM - CARD COMPONENTS
+   Version: 2.0.0
+   ============================================ */
+
+/* Base Card */
+.card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.card:hover {
+    border-color: var(--border-default);
+    box-shadow: var(--shadow-md);
+}
+
+/* Card with Elevation */
+.card-elevated {
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-sm);
+}
+
+.card-elevated:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+/* Card Header */
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.card-header h3,
+.card-header .card-title {
+    font-size: var(--text-md);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.card-header p,
+.card-header .card-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Card Body */
+.card-body {
+    padding: var(--space-4);
+}
+
+/* Card Footer */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-base);
+}
+
+/* Card Actions */
+.card-actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* Interactive Card */
+.card-interactive {
+    cursor: pointer;
+}
+
+.card-interactive:hover {
+    background: var(--bg-hover);
+}
+
+.card-interactive:active {
+    background: var(--bg-active);
+}
+
+/* Selected Card */
+.card-selected,
+.card.selected {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 1px var(--accent-primary);
+}
+
+/* Card with Gradient Border */
+.card-gradient {
+    position: relative;
+    border: none;
+}
+
+.card-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: var(--radius-xl);
+    background: var(--gradient-brand);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+}
+
+/* Stats Card */
+.card-stat {
+    padding: var(--space-4);
+}
+
+.card-stat .stat-value {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.card-stat .stat-label {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-top: var(--space-1);
+}
+
+.card-stat .stat-change {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+    margin-top: var(--space-2);
+}
+
+.card-stat .stat-change.positive {
+    color: var(--success);
+}
+
+.card-stat .stat-change.negative {
+    color: var(--error);
+}
+
+/* Grid of Cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-4);
+}
+
+/* Card Thumbnail */
+.card-thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--bg-base);
+}
+
+/* Agent Card (Specific) */
+.agent-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4);
+    transition: all var(--transition-normal);
+}
+
+.agent-card:hover {
+    border-color: var(--border-default);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.agent-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+}
+
+.agent-email {
+    font-size: var(--text-md);
+    font-weight: var(--font-medium);
+    color: var(--text-primary);
+}
+
+.agent-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border-subtle);
+    margin-top: var(--space-3);
+}
+
+.agent-timestamp {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+.agent-actions {
+    display: flex;
+    gap: var(--space-1);
+}
+
+.agent-action-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.agent-action-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.agent-action-btn.danger:hover {
+    background: var(--error-muted);
+    color: var(--error);
+}

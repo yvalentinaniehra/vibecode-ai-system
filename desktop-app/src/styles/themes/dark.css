@@ -1,0 +1,9 @@
+/**
+ * Theme - Dark Mode (Default)
+ * Applied by default, no data attribute needed
+ */
+
+:root {
+    /* This file intentionally empty - all dark theme tokens are defined in colors.css */
+    /* Dark mode is the default theme */
+}

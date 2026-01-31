@@ -1,0 +1,142 @@
+/* ============================================
+   VIBECODE DESIGN SYSTEM - CSS RESET
+   Version: 2.0.0
+   Modern reset for consistent baseline
+   ============================================ */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set core root defaults */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements */
+ul,
+ol {
+    list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Default link styles */
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--accent-secondary);
+}
+
+/* Make images easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+/* Remove default button styles */
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Fieldset reset */
+fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+
+/* Legend reset */
+legend {
+    padding: 0;
+}
+
+/* Table reset */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Strong and bold */
+strong,
+b {
+    font-weight: var(--font-semibold);
+}
+
+/* Code and pre */
+code,
+pre,
+kbd,
+samp {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+}
+
+/* Blockquote */
+blockquote {
+    border-left: 3px solid var(--border-default);
+    padding-left: var(--space-4);
+    margin: var(--space-4) 0;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Horizontal rule */
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--border-subtle);
+    margin: var(--space-6) 0;
+}

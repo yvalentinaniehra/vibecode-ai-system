@@ -1,0 +1,210 @@
+/* ============================================
+   VIBECODE DESIGN SYSTEM - MODAL COMPONENTS
+   Version: 2.0.0
+   CRITICAL FIX: Text visibility
+   ============================================ */
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    background: var(--backdrop);
+    backdrop-filter: blur(4px);
+    z-index: var(--z-modal);
+    animation: fadeIn var(--duration-fast) var(--ease-out);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Container */
+.modal {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-2xl);
+    overflow: hidden;
+    animation: slideUp var(--duration-normal) var(--ease-out);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.modal-header h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Modal Close Button */
+.modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+/* Modal Body */
+.modal-body {
+    flex: 1;
+    padding: var(--space-6);
+    overflow-y: auto;
+    color: var(--text-secondary);
+}
+
+/* CRITICAL: Ensure all modal content has proper colors */
+.modal-body label {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+}
+
+.modal-body input,
+.modal-body textarea {
+    color: var(--text-primary);
+    background: var(--bg-base);
+    border: 1px solid var(--border-default);
+}
+
+.modal-body input::placeholder,
+.modal-body textarea::placeholder {
+    color: var(--text-muted);
+}
+
+/* CRITICAL FIX: Select/Dropdown visibility in modals */
+.modal-body select,
+.modal select,
+.modal .settings-select {
+    color: var(--text-primary);
+    background: var(--bg-base);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236A6A7A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    background-size: 16px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2) var(--space-3);
+    padding-right: var(--space-8);
+    appearance: none;
+    cursor: pointer;
+}
+
+.modal-body select:focus,
+.modal select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: var(--focus-ring);
+}
+
+/* CRITICAL: Option visibility inside modal dropdowns */
+.modal-body select option,
+.modal select option {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    padding: var(--space-2);
+}
+
+.modal-body select option:hover,
+.modal select option:hover {
+    background: var(--bg-hover);
+}
+
+.modal-body select option:checked,
+.modal select option:checked {
+    background: var(--accent-muted);
+}
+
+/* Modal Footer */
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-6);
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-surface);
+}
+
+/* Modal Sizes */
+.modal-sm {
+    max-width: 360px;
+}
+
+.modal-lg {
+    max-width: 640px;
+}
+
+.modal-xl {
+    max-width: 800px;
+}
+
+.modal-full {
+    max-width: 90vw;
+    width: 100%;
+    max-height: 90vh;
+}
+
+/* Form Group inside Modal */
+.modal .form-group {
+    margin-bottom: var(--space-4);
+}
+
+.modal .form-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Empty Text */
+.modal .empty-text {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    text-align: center;
+    padding: var(--space-4);
+}

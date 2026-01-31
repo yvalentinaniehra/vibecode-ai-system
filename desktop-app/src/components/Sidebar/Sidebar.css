@@ -1,0 +1,121 @@
+/* Sidebar Component Styles */
+/* Note: Most styles are in App.css for consistency */
+/* This file is for component-specific overrides */
+
+.sidebar {
+    position: relative;
+}
+
+.sidebar-item {
+    position: relative;
+}
+
+.sidebar-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 24px;
+    background: #22c55e;
+    border-radius: 0 3px 3px 0;
+}
+
+.sidebar-logo {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+    }
+}
+
+/* Project Section */
+.sidebar-project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-xs);
+}
+
+.open-project-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-tertiary);
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.open-project-btn:hover:not(:disabled) {
+    background: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    color: white;
+}
+
+.open-project-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.open-project-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Project Indicator */
+.project-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-top: var(--spacing-xs);
+    max-width: 48px;
+    overflow: hidden;
+}
+
+.project-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-success);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.project-name {
+    font-size: 8px;
+    color: var(--color-text-muted);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    writing-mode: horizontal-tb;
+}

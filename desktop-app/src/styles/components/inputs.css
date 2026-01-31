@@ -1,0 +1,213 @@
+/* ============================================
+   VIBECODE DESIGN SYSTEM - INPUT COMPONENTS
+   Version: 2.0.0
+   ============================================ */
+
+/* Base Input */
+.input,
+.form-input,
+.settings-input {
+    display: block;
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: var(--text-primary);
+    background: var(--bg-base);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+}
+
+.input::placeholder,
+.form-input::placeholder,
+.settings-input::placeholder {
+    color: var(--text-muted);
+}
+
+.input:hover:not(:disabled),
+.form-input:hover:not(:disabled),
+.settings-input:hover:not(:disabled) {
+    border-color: var(--border-strong);
+}
+
+.input:focus,
+.form-input:focus,
+.settings-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: var(--focus-ring);
+}
+
+.input:disabled,
+.form-input:disabled,
+.settings-input:disabled {
+    background: var(--bg-surface);
+    color: var(--text-disabled);
+    cursor: not-allowed;
+}
+
+/* Textarea */
+.textarea,
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Select */
+.select,
+.settings-select,
+.form-select {
+    display: block;
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    padding-right: var(--space-8);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: var(--text-primary);
+    background: var(--bg-base);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236A6A7A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    background-size: 16px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    appearance: none;
+    transition: all var(--transition-fast);
+}
+
+.select:hover:not(:disabled),
+.settings-select:hover:not(:disabled),
+.form-select:hover:not(:disabled) {
+    border-color: var(--border-strong);
+}
+
+.select:focus,
+.settings-select:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: var(--focus-ring);
+}
+
+/* Select Options - CRITICAL FIX for visibility */
+.select option,
+.settings-select option,
+.form-select option {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    padding: var(--space-2) var(--space-3);
+}
+
+.select option:hover,
+.settings-select option:hover,
+.form-select option:hover {
+    background: var(--bg-hover);
+}
+
+.select option:checked,
+.settings-select option:checked,
+.form-select option:checked {
+    background: var(--accent-muted);
+    color: var(--text-primary);
+}
+
+/* Form Group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+/* Label */
+.form-label,
+label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-secondary);
+}
+
+.form-label .required,
+label .required {
+    color: var(--error);
+    margin-left: var(--space-1);
+}
+
+/* Helper Text */
+.form-helper {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+/* Error State */
+.input-error,
+.input.error,
+.form-input.error {
+    border-color: var(--error);
+}
+
+.input-error:focus,
+.input.error:focus,
+.form-input.error:focus {
+    box-shadow: var(--focus-ring-error);
+}
+
+.form-error {
+    font-size: var(--text-xs);
+    color: var(--error);
+}
+
+/* Input with Icon */
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group .input-icon {
+    position: absolute;
+    left: var(--space-3);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.input-group .input-icon+.input {
+    padding-left: var(--space-10);
+}
+
+/* Search Input */
+.search-input {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+}
+
+.search-input input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: var(--text-sm);
+}
+
+.search-input input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-input input:focus {
+    outline: none;
+}
+
+.search-input svg {
+    color: var(--text-muted);
+    width: 16px;
+    height: 16px;
+}

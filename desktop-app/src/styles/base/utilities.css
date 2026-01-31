@@ -1,0 +1,152 @@
+/**
+ * Utility Classes
+ * Common helper classes for rapid development
+ */
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--padding-md);
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+}
+
+/* ============================================
+   SPACING UTILITIES
+   ============================================ */
+.gap-sm {
+    gap: var(--gap-sm);
+}
+
+.gap-md {
+    gap: var(--gap-md);
+}
+
+.gap-lg {
+    gap: var(--gap-lg);
+}
+
+.p-0 {
+    padding: 0;
+}
+
+.p-sm {
+    padding: var(--padding-sm);
+}
+
+.p-md {
+    padding: var(--padding-md);
+}
+
+.p-lg {
+    padding: var(--padding-lg);
+}
+
+.m-0 {
+    margin: 0;
+}
+
+.mb-sm {
+    margin-bottom: var(--margin-sm);
+}
+
+.mb-md {
+    margin-bottom: var(--margin-md);
+}
+
+.mb-lg {
+    margin-bottom: var(--margin-lg);
+}
+
+/* ============================================
+   TEXT UTILITIES
+   ============================================ */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ============================================
+   VISIBILITY UTILITIES
+   ============================================ */
+.hidden {
+    display: none;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ============================================
+   INTERACTIVE UTILITIES
+   ============================================ */
+.clickable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* ============================================
+   ANIMATION UTILITIES
+   ============================================ */
+.transition-all {
+    transition: all var(--transition-normal);
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    transition: transform var(--transition-fast);
+}

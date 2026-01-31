@@ -1,0 +1,110 @@
+/* ============================================
+   VIBECODE DESIGN SYSTEM - ELEVATION & SHADOWS
+   Version: 2.0.0
+   ============================================ */
+
+:root {
+    /* ============================================
+     SHADOW SCALE
+     Dark theme shadows are more subtle
+     ============================================ */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.25);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.30);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.35),
+        0 2px 4px rgba(0, 0, 0, 0.20);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.40),
+        0 4px 8px rgba(0, 0, 0, 0.25);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.45),
+        0 6px 12px rgba(0, 0, 0, 0.30);
+    --shadow-2xl: 0 20px 40px rgba(0, 0, 0, 0.50),
+        0 10px 20px rgba(0, 0, 0, 0.35);
+
+    /* ============================================
+     FOCUS RING
+     Accessible focus indicator
+     ============================================ */
+    --focus-ring: 0 0 0 3px rgba(123, 123, 255, 0.25);
+    --focus-ring-error: 0 0 0 3px rgba(248, 113, 113, 0.25);
+    --focus-ring-success: 0 0 0 3px rgba(74, 222, 128, 0.25);
+
+    /* ============================================
+     GLOW EFFECTS
+     Premium hover states
+     ============================================ */
+    --glow-primary: 0 0 20px rgba(123, 123, 255, 0.30);
+    --glow-success: 0 0 20px rgba(74, 222, 128, 0.30);
+    --glow-warning: 0 0 20px rgba(251, 191, 36, 0.30);
+    --glow-error: 0 0 20px rgba(248, 113, 113, 0.30);
+
+    /* ============================================
+     SPACING SCALE
+     8px base unit
+     ============================================ */
+    --space-0: 0;
+    --space-1: 0.25rem;
+    /* 4px */
+    --space-2: 0.5rem;
+    /* 8px */
+    --space-3: 0.75rem;
+    /* 12px */
+    --space-4: 1rem;
+    /* 16px */
+    --space-5: 1.25rem;
+    /* 20px */
+    --space-6: 1.5rem;
+    /* 24px */
+    --space-8: 2rem;
+    /* 32px */
+    --space-10: 2.5rem;
+    /* 40px */
+    --space-12: 3rem;
+    /* 48px */
+    --space-16: 4rem;
+    /* 64px */
+    --space-20: 5rem;
+    /* 80px */
+
+    /* ============================================
+     BORDER RADIUS
+     Consistent rounded corners
+     ============================================ */
+    --radius-none: 0;
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    --radius-2xl: 16px;
+    --radius-full: 9999px;
+
+    /* ============================================
+     TRANSITIONS
+     Smooth, responsive animations
+     ============================================ */
+    --duration-fast: 100ms;
+    --duration-normal: 200ms;
+    --duration-slow: 300ms;
+    --duration-slower: 500ms;
+
+    --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Presets */
+    --transition-fast: var(--duration-fast) var(--ease-default);
+    --transition-normal: var(--duration-normal) var(--ease-default);
+    --transition-slow: var(--duration-slow) var(--ease-default);
+
+    /* ============================================
+     Z-INDEX SCALE
+     Layering system
+     ============================================ */
+    --z-base: 0;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-modal: 300;
+    --z-popover: 400;
+    --z-tooltip: 500;
+    --z-toast: 600;
+}

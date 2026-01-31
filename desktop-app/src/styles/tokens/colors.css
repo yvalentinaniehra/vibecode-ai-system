@@ -1,0 +1,112 @@
+/* ============================================
+   VIBECODE DESIGN SYSTEM - COLOR TOKENS
+   Version: 2.0.0
+   Theme: Dark-First (BigTech-level)
+   ============================================ */
+
+:root {
+    /* ============================================
+     BACKGROUND LAYERS
+     Layered elevation system - darker = lower
+     ============================================ */
+    --bg-base: #0A0A0F;
+    /* App background, lowest level */
+    --bg-surface: #12121A;
+    /* Cards, panels */
+    --bg-elevated: #1A1A24;
+    /* Modals, dropdowns, tooltips */
+    --bg-hover: #22222E;
+    /* Hover states */
+    --bg-active: #2A2A38;
+    /* Active/pressed states */
+    --bg-selected: #2D2D4A;
+    /* Selected items */
+
+    /* ============================================
+     TEXT COLORS
+     Hierarchical opacity for visual weight
+     ============================================ */
+    --text-primary: #E8E8ED;
+    /* Headings, important content - 8.5:1 contrast */
+    --text-secondary: #A0A0B0;
+    /* Body text - 5.2:1 contrast */
+    --text-muted: #6A6A7A;
+    /* Placeholders, hints - decorative only */
+    --text-disabled: #45454F;
+    /* Disabled elements */
+    --text-inverse: #0A0A0F;
+    /* Text on light backgrounds */
+
+    /* ============================================
+     BORDER COLORS
+     Subtle separation without harsh lines
+     ============================================ */
+    --border-subtle: #1F1F2A;
+    /* Very subtle dividers */
+    --border-default: #2A2A38;
+    /* Input borders, cards */
+    --border-strong: #3A3A48;
+    /* Emphasized borders */
+    --border-focus: #7B7BFF;
+    /* Focus rings */
+
+    /* ============================================
+     BRAND ACCENTS
+     Muted, elegant purple-blue palette
+     ============================================ */
+    --accent-primary: #7B7BFF;
+    /* Primary actions, links */
+    --accent-secondary: #5B5BEE;
+    /* Hover states */
+    --accent-tertiary: #4545CC;
+    /* Pressed states */
+    --accent-muted: rgba(123, 123, 255, 0.15);
+    /* Subtle backgrounds */
+
+    /* ============================================
+     SEMANTIC COLORS
+     Consistent meaning across the app
+     ============================================ */
+    --success: #4ADE80;
+    --success-muted: rgba(74, 222, 128, 0.15);
+    --warning: #FBBF24;
+    --warning-muted: rgba(251, 191, 36, 0.15);
+    --error: #F87171;
+    --error-muted: rgba(248, 113, 113, 0.15);
+    --info: #60A5FA;
+    --info-muted: rgba(96, 165, 250, 0.15);
+
+    /* ============================================
+     GRADIENTS
+     Premium, subtle depth effects
+     ============================================ */
+    --gradient-brand: linear-gradient(135deg, #7B7BFF 0%, #5B5BCC 100%);
+    --gradient-sidebar: linear-gradient(180deg, #12121A 0%, #0A0A0F 100%);
+    --gradient-card: linear-gradient(180deg, #1A1A24 0%, #12121A 100%);
+    --gradient-success: linear-gradient(135deg, #4ADE80 0%, #22C55E 100%);
+    --gradient-warning: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+
+    /* ============================================
+     OVERLAYS
+     For modals, popovers, and backdrops
+     ============================================ */
+    --overlay-light: rgba(255, 255, 255, 0.05);
+    --overlay-medium: rgba(255, 255, 255, 0.10);
+    --overlay-heavy: rgba(255, 255, 255, 0.15);
+    --backdrop: rgba(0, 0, 0, 0.75);
+}
+
+/* ============================================
+   SIDEBAR SPECIFIC TOKENS
+   Slightly different palette for sidebar
+   ============================================ */
+:root {
+    --sidebar-bg: var(--gradient-sidebar);
+    --sidebar-item-bg: transparent;
+    --sidebar-item-hover: rgba(255, 255, 255, 0.08);
+    --sidebar-item-active: rgba(123, 123, 255, 0.20);
+    --sidebar-text: var(--text-secondary);
+    --sidebar-text-active: var(--text-primary);
+    --sidebar-icon: #6A6A7A;
+    --sidebar-icon-active: #E8E8ED;
+}

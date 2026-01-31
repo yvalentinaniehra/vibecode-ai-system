@@ -1,0 +1,84 @@
+/* CreditsBar Component Styles */
+
+.credits-bar {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border-light);
+}
+
+.credits-bar h3 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-md) 0;
+}
+
+.credits-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.credit-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.credit-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.credit-icon {
+    font-size: 14px;
+}
+
+.credit-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.credit-bar-container {
+    height: 8px;
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.credit-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+}
+
+.credit-bar-fill.prompt {
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.credit-bar-fill.flow {
+    background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%);
+}
+
+.credit-stats {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: var(--font-size-xs);
+}
+
+.credit-stats span:first-child {
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.credit-divider {
+    color: var(--color-text-muted);
+}
+
+.credit-total {
+    color: var(--color-text-muted);
+}

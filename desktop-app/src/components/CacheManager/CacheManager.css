@@ -1,0 +1,185 @@
+/* CacheManager Component Styles */
+
+.cache-manager {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.cache-section {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    overflow: hidden;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.section-header:hover {
+    background: var(--color-bg-tertiary);
+}
+
+.section-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    transition: transform var(--transition-fast);
+}
+
+.section-chevron.expanded {
+    transform: rotate(90deg);
+}
+
+.section-title {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    flex: 1;
+}
+
+.section-stats {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    background: var(--color-bg-tertiary);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+}
+
+.section-content {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+}
+
+.section-loading,
+.section-empty {
+    padding: var(--spacing-md);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+/* Folder Items */
+.folder-item {
+    margin-bottom: 2px;
+}
+
+.folder-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.folder-header:hover {
+    background: var(--color-bg-tertiary);
+}
+
+.folder-chevron {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-muted);
+    transition: transform var(--transition-fast);
+}
+
+.folder-chevron.expanded {
+    transform: rotate(90deg);
+}
+
+.folder-icon {
+    font-size: 14px;
+}
+
+.folder-label {
+    flex: 1;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.folder-size {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.folder-delete {
+    background: none;
+    border: none;
+    padding: 4px;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    opacity: 0;
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-sm);
+}
+
+.folder-header:hover .folder-delete {
+    opacity: 1;
+}
+
+.folder-delete:hover {
+    color: var(--color-danger);
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* File Items */
+.folder-files {
+    padding-left: 24px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.file-item:hover {
+    background: var(--color-bg-tertiary);
+}
+
+.file-icon {
+    font-size: 12px;
+}
+
+.file-name {
+    flex: 1;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-delete {
+    background: none;
+    border: none;
+    padding: 2px;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    opacity: 0;
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-sm);
+}
+
+.file-item:hover .file-delete {
+    opacity: 1;
+}
+
+.file-delete:hover {
+    color: var(--color-danger);
+}
