@@ -75,69 +75,71 @@ const MarketResearch: React.FC = () => {
         try {
             // Step 1: Market Size Analysis
             setActiveStep(1);
-            const marketQuery = `Analyze market size for ${input.industry} in ${input.geography}:
-        - TAM (Total Addressable Market)
-        - SAM (Serviceable Addressable Market)
-        - SOM (Serviceable Obtainable Market)
-        - Growth rate and trends
-        Provide specific numbers with sources.`;
-
-            const { invoke } = await import('@tauri-apps/api/core');
-
-            const marketResult = await invoke<{ content: string }>('perplexity_ask', {
-                query: marketQuery,
-            });
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
             // Step 2: Competitor Analysis
             setActiveStep(2);
-            const competitorQuery = `List top 5 competitors in ${input.industry} for ${input.productIdea}:
-        - Company name
-        - Key features/products
-        - Pricing model
-        - Strengths and weaknesses`;
-
-            const competitorResult = await invoke<{ content: string }>('perplexity_ask', {
-                query: competitorQuery,
-            });
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
             // Step 3: Pain Point Discovery
             setActiveStep(3);
-            const painQuery = `What are the top pain points for ${input.targetAudience} regarding ${input.productIdea}?
-        Search Reddit, forums, app reviews for real user complaints.`;
-
-            const painResult = await invoke<{ content: string }>('perplexity_ask', {
-                query: painQuery,
-            });
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
             // Step 4: Synthesize
             setActiveStep(4);
+            await new Promise(resolve => setTimeout(resolve, 500));
 
-            // Parse and combine results
+            // Mock BRD output (TODO: Integrate real Perplexity MCP)
             const brd: BRDOutput = {
-                executiveSummary: `Market analysis for ${input.productIdea} in ${input.industry} targeting ${input.targetAudience} in ${input.geography}.`,
+                executiveSummary: `## Market Research Results for ${input.productIdea}
+
+### Market Analysis
+- **TAM (Total Addressable Market):** Estimated $5B for ${input.industry} in ${input.geography}
+- **SAM (Serviceable Addressable Market):** ~$500M targeting ${input.targetAudience || 'SMEs'}
+- **SOM (Serviceable Obtainable Market):** $25M achievable in Year 1
+- **Growth Rate:** 15-20% CAGR
+
+### Top Pain Points
+1. Complex pricing structures
+2. Poor user experience
+3. Lack of local support
+4. Integration difficulties
+
+### Competitor Landscape
+| Competitor | Strengths | Weaknesses |
+|------------|-----------|------------|
+| Competitor A | Market leader | Expensive |
+| Competitor B | Good UX | Limited features |
+| Competitor C | Local presence | Outdated tech |
+
+### Opportunities
+- Gap in mid-market segment
+- Rising demand for AI features
+- Underserved ${input.geography} market
+
+*Note: This is mock data. Integrate Perplexity MCP for real research.*`,
                 marketAnalysis: {
-                    tam: 'Extracted from research',
-                    sam: 'Extracted from research',
-                    som: 'Extracted from research',
-                    growthRate: 'Extracted from research',
+                    tam: '$5B',
+                    sam: '$500M',
+                    som: '$25M',
+                    growthRate: '15-20% CAGR',
                 },
                 painPoints: [
-                    { pain: 'Pain point 1', severity: 'high', affectedUsers: input.targetAudience },
+                    { pain: 'Complex pricing', severity: 'high', affectedUsers: input.targetAudience || 'SMEs' },
+                    { pain: 'Poor UX', severity: 'critical', affectedUsers: 'All users' },
+                    { pain: 'Lack of local support', severity: 'medium', affectedUsers: 'International users' },
                 ],
                 competitors: [
-                    { name: 'Competitor 1', strengths: ['Strong brand'], weaknesses: ['High price'], pricing: '$' },
+                    { name: 'Competitor A', strengths: ['Market leader', 'Strong brand'], weaknesses: ['Expensive'], pricing: '$$$' },
+                    { name: 'Competitor B', strengths: ['Good UX'], weaknesses: ['Limited features'], pricing: '$$' },
                 ],
-                opportunities: ['Market gap identified'],
-                threats: ['Strong competition'],
-                sources: ['perplexity.ai'],
-                confidenceScore: 75,
+                opportunities: ['Gap in mid-market', 'Rising AI demand'],
+                threats: ['Strong competition', 'Economic uncertainty'],
+                sources: ['Mock Data - Integrate Perplexity MCP'],
+                confidenceScore: 60,
             };
 
-            // Store raw results for display
-            setOutput({
-                ...brd,
-                executiveSummary: `## Market Research Results\n\n### Market Analysis\n${marketResult.content}\n\n### Competitors\n${competitorResult.content}\n\n### Pain Points\n${painResult.content}`,
-            });
+            setOutput(brd);
 
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Research failed');
