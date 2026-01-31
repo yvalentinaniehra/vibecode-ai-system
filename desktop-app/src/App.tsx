@@ -3,6 +3,7 @@ import { invoke } from '@tauri-apps/api/core';
 import './App.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import FileExplorer from './components/FileExplorer/FileExplorer';
+import FileViewer from './components/FileViewer/FileViewer';
 import ChangesPanel from './components/ChangesPanel/ChangesPanel';
 import Dashboard from './pages/Dashboard';
 import TaskExecutor from './pages/TaskExecutor';
@@ -29,6 +30,7 @@ function App() {
   const [currentProject, setCurrentProject] = useState<string | null>(null);
   const [showExplorer, setShowExplorer] = useState(true);
   const [sharedBRD, setSharedBRD] = useState<SharedBRDData | null>(null);
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
 
   // Handler for navigating with data
   const handleNavigateWithData = (page: string, data?: SharedBRDData) => {
@@ -69,8 +71,12 @@ function App() {
   }, [currentProject]);
 
   const handleFileSelect = (path: string) => {
-    // Log selected file - future: open in editor or send to TaskExecutor
-    console.log('Selected file:', path);
+    // Open file in viewer
+    setSelectedFile(path);
+  };
+
+  const handleCloseFile = () => {
+    setSelectedFile(null);
   };
 
   const renderPage = () => {
@@ -131,7 +137,15 @@ function App() {
           {showExplorer ? '◀' : '▶'}
         </button>
 
-        {renderPage()}
+        {/* Main Area: Either FileViewer or Page Content */}
+        {selectedFile ? (
+          <FileViewer
+            filePath={selectedFile}
+            onClose={handleCloseFile}
+          />
+        ) : (
+          renderPage()
+        )}
       </main>
     </div>
   );

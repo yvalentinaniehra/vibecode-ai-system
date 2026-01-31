@@ -1,0 +1,238 @@
+.file-viewer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.file-viewer.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-state {
+    text-align: center;
+    color: #6b7280;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    opacity: 0.5;
+}
+
+.empty-hint {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+}
+
+/* Tab Bar */
+.viewer-tabs {
+    display: flex;
+    background: #252526;
+    border-bottom: 1px solid #333;
+    min-height: 36px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #1e1e1e;
+    border-right: 1px solid #333;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.tab.active {
+    background: #1e1e1e;
+    border-bottom: 2px solid #007acc;
+}
+
+.tab-icon {
+    font-size: 0.9rem;
+}
+
+.tab-name {
+    color: #fff;
+}
+
+.tab-close {
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    margin-left: 4px;
+    border-radius: 3px;
+}
+
+.tab-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Breadcrumb */
+.viewer-breadcrumb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 16px;
+    background: #252526;
+    border-bottom: 1px solid #333;
+    font-size: 0.8rem;
+}
+
+.breadcrumb-path {
+    color: #9ca3af;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.breadcrumb-lang {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Content Area */
+.viewer-content {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+}
+
+.viewer-loading,
+.viewer-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+    color: #6b7280;
+}
+
+.loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #333;
+    border-top-color: #007acc;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.error-icon {
+    font-size: 2rem;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.85rem;
+}
+
+/* Code Container */
+.code-container {
+    display: flex;
+    min-height: 100%;
+}
+
+.line-numbers {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+    background: #1a1a1a;
+    border-right: 1px solid #333;
+    min-width: 48px;
+    text-align: right;
+    user-select: none;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
+
+.line-number {
+    padding: 0 12px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.code-content {
+    flex: 1;
+    margin: 0;
+    padding: 16px;
+    overflow: visible;
+    background: transparent;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    tab-size: 4;
+    white-space: pre;
+}
+
+.code-content code {
+    color: #d4d4d4;
+    font-family: inherit;
+}
+
+/* Syntax highlighting colors (basic) */
+.language-typescript .code-content,
+.language-javascript .code-content {
+    color: #9cdcfe;
+}
+
+.language-python .code-content {
+    color: #ce9178;
+}
+
+.language-rust .code-content {
+    color: #dcdcaa;
+}
+
+.language-markdown .code-content {
+    color: #d4d4d4;
+}
+
+.language-json .code-content {
+    color: #9cdcfe;
+}
+
+/* Scrollbar */
+.viewer-content::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.viewer-content::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.viewer-content::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 5px;
+}
+
+.viewer-content::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+.viewer-content::-webkit-scrollbar-corner {
+    background: #1a1a1a;
+}
