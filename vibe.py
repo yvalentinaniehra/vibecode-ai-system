@@ -59,6 +59,7 @@ def show_help():
 
 [bold cyan]Commands:[/bold cyan]
   task "<description>"       Execute a task (auto-routes to best agent)
+  swarm --task "<task>"      Run parallel task on multiple files
   workflow <name>            Run a workflow
   workflow list              List available workflows
   workflow run <file>        Run workflow from file
@@ -195,6 +196,44 @@ def cmd_workflow(args):
     return 1
 
 
+def cmd_swarm(args):
+    """Handle swarm commands"""
+    from core.swarm_dispatch import SwarmDispatcher
+    
+    if len(args) < 1:
+        console.print("[red]Error: Swarm options required[/red]")
+        console.print("Usage: python vibe.py swarm --task \"...\" --target \"...\"")
+        return 1
+        
+    task_prompt = ""
+    target_pattern = ""
+    
+    # Simple argument parsing
+    for i, arg in enumerate(args):
+        if arg == '--task' and i + 1 < len(args):
+            task_prompt = args[i+1]
+        elif arg == '--target' and i + 1 < len(args):
+            target_pattern = args[i+1]
+            
+    if not task_prompt:
+        console.print("[red]Error: --task argument is required[/red]")
+        return 1
+        
+    if not target_pattern:
+        console.print("[red]Error: --target argument is required (e.g. 'agents/*.py')[/red]")
+        return 1
+        
+    # Glob expansion
+    import glob
+    files = glob.glob(target_pattern, recursive=True)
+    if not files:
+        console.print(f"[red]No files found matching: {target_pattern}[/red]")
+        return 1
+        
+    dispatcher = SwarmDispatcher(max_workers=5)
+    dispatcher.dispatch(task_prompt, files)
+    return 0
+
 def main():
     """Main entry point"""
     args = sys.argv[1:]
@@ -221,6 +260,10 @@ def main():
     # Workflow command
     if command == 'workflow':
         return cmd_workflow(args[1:])
+
+    # Swarm command
+    if command == 'swarm':
+        return cmd_swarm(args[1:])
 
     # Initialize orchestrator
     try:
